@@ -1,0 +1,10 @@
+{
+  "name": "EcoClassify - Waste Segregation & Recycling AI",
+  "description": "AI-powered waste classifier with Hugging Face & Gemini inference, recycling guidance, user feedback loop, and active retraining pipeline.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

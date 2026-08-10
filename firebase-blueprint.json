@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profiles",
+      "description": "User account profiles and roles (user/admin)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "scansCount": { "type": "number" },
+        "feedbackCount": { "type": "number" },
+        "ecoPoints": { "type": "number" },
+        "ecoRankLevel": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "scans": {
+      "title": "End-User Image Scans",
+      "description": "Scanned waste items with AI predictions and images",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "itemName": { "type": "string" },
+        "predictedCategory": { "type": "string" },
+        "confidence": { "type": "number" },
+        "region": { "type": "string" },
+        "imageBase64": { "type": "string" },
+        "description": { "type": "string" },
+        "feedbackSubmitted": { "type": "boolean" },
+        "correctedCategory": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "predictedCategory", "createdAt"]
+    },
+    "user_feedback": {
+      "title": "User Feedback Annotations",
+      "description": "Corrections and validations provided by end users for model fine-tuning",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "scanId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "originalCategory": { "type": "string" },
+        "correctedCategory": { "type": "string" },
+        "itemName": { "type": "string" },
+        "imageBase64": { "type": "string" },
+        "isCorrect": { "type": "boolean" },
+        "comments": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending Review", "Approved for Dataset", "Ingested"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["scanId", "correctedCategory", "createdAt"]
+    },
+    "custom_datasets": {
+      "title": "Admin Uploaded Datasets",
+      "description": "Custom waste image datasets uploaded by admins",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "uploadedBy": { "type": "string" },
+        "samplesCount": { "type": "number" },
+        "classesCount": { "type": "number" },
+        "description": { "type": "string" },
+        "categories": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "samplesCount"]
+    }
+  }
+}
